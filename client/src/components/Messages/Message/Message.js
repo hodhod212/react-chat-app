@@ -1,5 +1,5 @@
 import React from 'react';
-
+import FetchRandomUser from '../../Chat/FetchRandomUser';
 import './Message.css';
 
 import ReactEmoji from 'react-emoji';
