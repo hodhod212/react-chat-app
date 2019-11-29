@@ -1,5 +1,5 @@
 import React from 'react';
-
+import FetchRandomUser from  '../Chat/FetchRandomUser';
 import './Input.css';
 
 const Input = ({ setMessage, sendMessage, message }) => (

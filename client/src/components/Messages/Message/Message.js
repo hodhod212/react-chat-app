@@ -1,10 +1,9 @@
 import React from 'react';
-import FetchRandomUser from '../../Chat/FetchRandomUser';
 import './Message.css';
-
+import FetchRandomUser from '../../Chat/FetchRandomUser';
 import ReactEmoji from 'react-emoji';
 
-const Message = ({ message: { text, user }, name }) => {
+const Message = ({ message: { text, user}, name }) => {
   let isSentByCurrentUser = false;
 
   const trimmedName = name.trim().toLowerCase();
@@ -19,7 +18,7 @@ const Message = ({ message: { text, user }, name }) => {
         <div className="messageContainer justifyEnd">
           <p className="sentText pr-10">{trimmedName}</p>
           <div className="messageBox backgroundBlue">
-            <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
+      <p className="messageText colorWhite">{ReactEmoji.emojify(text)}{<FetchRandomUser/>}</p>
           </div>
         </div>
         )

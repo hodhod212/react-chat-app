@@ -10,6 +10,8 @@ export default class FetchRandomUser extends React.Component {
     const url = "https://api.randomuser.me/?results=1";
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
+    
     this.setState({ people: data.results, loading: false });
   }
 

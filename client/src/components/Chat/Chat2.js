@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
 import io from "socket.io-client";
-import FetchRandomUser from  './FetchRandomUser';
+
 import TextContainer from '../TextContainer/TextContainer';
 import Messages from '../Messages/Messages';
 import InfoBar from '../InfoBar/InfoBar';
@@ -52,12 +52,11 @@ const Chat = ({ location }) => {
 
   const sendMessage = (event) => {
     event.preventDefault();
-    if (message === "/randompicture") {
-      message = {FetchRandomUser}         
-    }
-   /*  if(message ==='/h'){
-      socket.emit('sendMessage', message, () => setMessage(''));
-    } */
+    /* if (message === "/randompicture") {
+        const url = "https://api.randomuser.me/?results=1";
+        const response = await fetch(url);
+        const data = await response.json();
+      } */
     if(message) {
       socket.emit('sendMessage', message, () => setMessage(''));
     }
