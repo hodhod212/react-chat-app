@@ -6,5 +6,5 @@ https://react-application-chat.herokuapp.com/
 Admin URL: https://app.netlify.com/sites/aliandsamer
 URL:       https://aliandsamer.netlify.com
 Site ID:   35e83be1-b46e-4aee-b9e8-526beff357c1
-"aliandsamer" site was created
+"samerandali" site was created
 -->
