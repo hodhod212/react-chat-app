@@ -33,7 +33,16 @@ io.on('connect', (socket) => {
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id);
 
-    io.to(user.room).emit('message', { user: user.name, text: message });
+    // Read message 
+    // Check if message is "/dance"
+    // 
+    if(message === "/danse"){
+      io.to(user.room).emit('message', { user: user.name, text:"is dansening"});
+    }
+    else{
+      
+      io.to(user.room).emit('message', { user: user.name, text: message });
+    }
 
     callback();
   });
