@@ -52,12 +52,14 @@ const Chat = ({ location }) => {
 
   const sendMessage = (event) => {
     event.preventDefault();
-    if (message === "/randompicture") {
-      message = {FetchRandomUser}         
-    }
-   /*  if(message ==='/h'){
-      socket.emit('sendMessage', message, () => setMessage(''));
+    /* if (message === "/randompicture") {
+      url ='https://randomuser.me/api/?results=1'
+      const response = await fetch(url);
+      const data = await response.json();
+      const  large  = data.results[0].picture.large;
+      message =  '<img src="'+large+'">';     
     } */
+
     if(message) {
       socket.emit('sendMessage', message, () => setMessage(''));
     }
