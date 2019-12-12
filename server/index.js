@@ -1,4 +1,5 @@
 const http = require('http');
+const fetch = require('node-fetch');
 const express = require('express');
 const socketio = require('socket.io');
 const cors = require('cors');
@@ -12,18 +13,6 @@ app.use(cors());
 app.use(router);
 io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => {
-   /*  var readStream = fs.createReadStream(path.resolve(__dirname,'./dance.jpg'),
-    {encoding:'binary'}),chunks = [];
-    readStream.on('readable',function(){
-      console.log('Image loading ...')
-    });
-    readStream.on('data',function(chunk){
-      chunks.push(chunk);
-      socket.emit('img-chunk',chunk);
-    });
-    readStream.on('end',function(){
-      console.log('Image loaded');
-    }); */
     const { error, user } = addUser({ id: socket.id, name, room });
     if(error) return callback(error);
     socket.join(user.room);
@@ -32,19 +21,25 @@ io.on('connect', (socket) => {
     io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
     callback();
   });
-  socket.on('sendMessage', (message, callback) => {
+  
+  socket.on('sendMessage', async (message, callback) => {
     const user = getUser(socket.id);
-    // Read message
-    // Check if message is "/dance"
-    //
-    if(message === "/danse"){
-      io.to(user.room).emit('message', { user: user.name, text:image});
+    if(message === "/hej"){
+      io.to(user.room).emit('message', { user: user.name, text:'hej på dig'});
+    }
+    else if(message == "/random"){
+      url ='https://randomuser.me/api/?results=1'
+        const response = await fetch(url);
+        const data = await response.json();
+        const Large  = data.results[0].picture.large;
+      io.to(user.room).emit('message', { user: user.name, text: message,img:Large});
     }
     else{
       io.to(user.room).emit('message', { user: user.name, text: message });
     }
     callback();
   });
+  
   socket.on('disconnect', () => {
     const user = removeUser(socket.id);
     if(user) {
